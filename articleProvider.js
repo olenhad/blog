@@ -6,27 +6,41 @@ var ObjectID = require('mongodb').ObjectID;
 
 ArticleProvider = function(host, port) {
   this.db= new Db('node-mongo-blog', new Server(host, port, {auto_reconnect: true}, {}));
-  this.db.open(function(){});
+  //this.db.open(function(){});
+  //console.log(this.db);
 };
 
 
 ArticleProvider.prototype.getCollection= function(callback) {
-  this.db.collection('articles', function(error, article_collection) {
+  var self = this;
+  this.db.open(function (error, db){
+  self.db.collection('articles', function(error, article_collection) {
     if( error ) callback(error);
     else callback(null, article_collection);
+    self.db.close();
   });
+});
 };
 
 ArticleProvider.prototype.findAll = function(callback) {
   console.log("enter 1");
     this.getCollection(function(error, article_collection) {
       console.log("enter 2");
-      if( error ) callback(error)
+      if( error ) {
+        //callback(error);
+        console.log("error in findall"+error);
+      }
       else {
+        console.log("enter 3");
         article_collection.find().toArray(function(error, results) {
-          console.log("enter 3");
-          if( error ) callback(error)
-          else callback(null, results)
+          console.log("enter 4");
+          if( error ) {
+            console.log("error in 34");
+          }
+          else {
+            console.log("ok till 37")
+            callback(null, results)
+          }
         });
       }
     });

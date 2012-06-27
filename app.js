@@ -30,19 +30,28 @@ articleProvider.save([
   {title: 'Post one', body: 'Body one', comments : [{ author: 'Bob', comment:'blabla'}, {author:'Dub', comment:'dummy'}]},
   {title: 'Post two', body:'Body two'},
   {title:'Post three',body: 'Body three'}
-  ], function(error, articles){});
+  ], function(error, articles){ if(!error){
+        console.log("done- test");
+        
+        }
+        else
+          console.log(error);
+      });
+
 exports.ArticleProvider = ArticleProvider;
 app.get('/', function(req, res){
   console.log("request for / recieved");
     articleProvider.findAll( function(error,docs){
         console.log("entering findall");
+        
         res.render('index.jade', { 
             locals: {
                 title: 'Blog',
                 articles:docs
             }
         });
-        console.log(JSON.stringify(docs));
+        
+        console.log(docs);
       
     });
 });
