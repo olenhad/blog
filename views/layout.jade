@@ -1,6 +1,23 @@
 !!!
+
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+
+	div.container
+		div.header
+			h3 Olenhad's blog
+
+		div.menu
+			u1
+				li
+					a(href="/") Blog
+				li
+					a(href="/") Projects
+				li
+					a(href="/") About Me	
+
+
+
+		body!= body

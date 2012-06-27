@@ -23,20 +23,10 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
-
+app.register('.html',require('jade'));
 var articleProvider = new ArticleProvider('localhost', 27017);
 // Routes
-articleProvider.save([
-  {title: 'Post one', body: 'Body one', comments : [{ author: 'Bob', comment:'blabla'}, {author:'Dub', comment:'dummy'}]},
-  {title: 'Post two', body:'Body two'},
-  {title:'Post three',body: 'Body three'}
-  ], function(error, articles){ if(!error){
-        console.log("done- test");
-        
-        }
-        else
-          console.log(error);
-      });
+
 
 exports.ArticleProvider = ArticleProvider;
 app.get('/', function(req, res){

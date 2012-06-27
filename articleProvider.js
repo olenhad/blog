@@ -81,5 +81,23 @@ ArticleProvider.prototype.save = function(articles, callback) {
       }
     });
 };
+ArticleProvider.prototype.addCommentToArticle = function(articleId,comment,callback){
+  this.getCollection(function(error,collection){
+    if(error) callback(error)
+    else{
+      collection.update(
+      {
+        _id: collection.db.bson_serializer.ObjectID.createFromHexString(articleId)
+      },
+      {
+        "$push": {comments:comment}
+      },
+      function(error,article){
+        if(error) callback(error);
+        else callback(null,article)
+      });
+    }
+  });
+};
 
 exports.ArticleProvider = ArticleProvider;

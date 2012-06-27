@@ -1,28 +1,119 @@
+html
+  background: #D6D6D6
 body
-  font-family "Helvetica Neue", "Lucida Grande", "Arial"
+  //font-family "Helvetica Neue", "Lucida Grande", "Arial"
+  font-family Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace
   font-size 13px
-  text-align center
-  text-stroke 2px rgba(255, 255, 255, 0.1)
-  color #555
+  text-align left
+  margin left
+  text-stroke 1px rgba(255, 255, 255, 0.1)
+  color black
+
+          
+      
+#articles
+  text-align left
+
+  width 480px
+
+  .article
+    margin 20px
+    background:rgba(235, 232, 232, 0.44) top left no-repeat;
+    padding: 25px;
+    border-radius 6px
+    .created_at
+      display none
+    .title
+      a
+        font-weight bold
+        text-decoration: none;
+        font-size 20px
+        color black
 h1, h2
-  margin 0
+  margin 20px
   font-size 22px
   color #343434
 h1
   text-shadow 1px 2px 2px #ddd
-  font-size 60px
-#articles
+  font-size 20px
+h3
+  font-size 30px
+.container
+  position: relative;
+  width: 980px;
+  margin: 75px auto 0 auto;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.1);
+.header
+  
+  height: 75px;
+  position: relative;
+  background:black top left no-repeat;
+  padding: 45px;
+  color: white;
+  width: 888px;
+  border: solid 1px #7E7E7E;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow: hidden;
   text-align left
-  margin-left auto
-  margin-right auto
-  width 320px
-  .article
-    margin 20px
-    .created_at
-        display none
-    .title
-        font-weight bold
-        text-decoration underline
-        background-color #ffe
-    .body
-        background-color #ffa
+.menu
+  padding: 0 45px 0 45px;
+  position: relative;
+  background: #010303 repeat-x top left;
+  margin: 0;
+  height: 60px;
+  width: 890px;
+  border-top: solid 1px #B5B8B8;
+  border-bottom: solid 1px #617474;
+  text-shadow: 0 1px 1px #007D7D;
+  li
+    display: inline;
+    float: left;
+    padding: 5px 15px 5px 15px;
+
+    a
+      text-decoration: none;
+      color: #7FF15C;
+      font-size: 1.25em;
+      letter-spacing: 1px;
+       
+
+ul
+  list-style-type: none;
+      
+
+        
+
+       
+
+
+
+
+.article
+  margin 20px
+
+  .created_at
+    display none
+  .title
+    
+    font-weight bold
+    text-decoration: none;
+    font-size 20px
+    color black
+  .body
+    background:rgba(235, 232, 232, 0.44) top left no-repeat;
+    padding: 25px;
+    border-radius 6px
+
+  input[type =text]
+    width 490px
+    margin-left 16px
+  input[type =button], input[type =submit]
+    text-align left
+    margin-left 440px
+  textarea
+    width 490px
+    height 90px
+

@@ -1,37 +1,119 @@
+html {
+  background: #d6d6d6;
+}
 body {
-  font-family: "Helvetica Neue", "Lucida Grande", "Arial";
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 13px;
-  text-align: center;
-  text-stroke: 2px rgba(255,255,255,0.1);
-  color: #555;
+  text-align: left;
+  margin: left;
+  text-stroke: 1px rgba(255,255,255,0.1);
+  color: #000;
+}
+#articles {
+  text-align: left;
+  width: 480px;
+}
+#articles .article {
+  margin: 20px;
+  background: rgba(235,232,232,0.44) top left no-repeat;
+  padding: 25px;
+  border-radius: 6px;
+}
+#articles .article .created_at {
+  display: none;
+}
+#articles .article .title a {
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 20px;
+  color: #000;
 }
 h1,
 h2 {
-  margin: 0;
+  margin: 20px;
   font-size: 22px;
   color: #343434;
 }
 h1 {
   text-shadow: 1px 2px 2px #ddd;
-  font-size: 60px;
+  font-size: 20px;
 }
-#articles {
+h3 {
+  font-size: 30px;
+}
+.container {
+  position: relative;
+  width: 980px;
+  margin: 75px auto 0 auto;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0px 5px 20px 2px rgba(0,0,0,0.1);
+}
+.header {
+  height: 75px;
+  position: relative;
+  background: #000 top left no-repeat;
+  padding: 45px;
+  color: #fff;
+  width: 888px;
+  border: solid 1px #7e7e7e;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow: hidden;
   text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  width: 320px;
 }
-#articles .article {
+.menu {
+  padding: 0 45px 0 45px;
+  position: relative;
+  background: #010303 repeat-x top left;
+  margin: 0;
+  height: 60px;
+  width: 890px;
+  border-top: solid 1px #b5b8b8;
+  border-bottom: solid 1px #617474;
+  text-shadow: 0 1px 1px #007d7d;
+}
+.menu li {
+  display: inline;
+  float: left;
+  padding: 5px 15px 5px 15px;
+}
+.menu li a {
+  text-decoration: none;
+  color: #7ff15c;
+  font-size: 1.25em;
+  letter-spacing: 1px;
+}
+ul {
+  list-style-type: none;
+}
+.article {
   margin: 20px;
 }
-#articles .article .created_at {
+.article .created_at {
   display: none;
 }
-#articles .article .title {
+.article .title {
   font-weight: bold;
-  text-decoration: underline;
-  background-color: #ffe;
+  text-decoration: none;
+  font-size: 20px;
+  color: #000;
 }
-#articles .article .body {
-  background-color: #ffa;
+.article .body {
+  background: rgba(235,232,232,0.44) top left no-repeat;
+  padding: 25px;
+  border-radius: 6px;
+}
+.article input[type =text] {
+  width: 490px;
+  margin-left: 16px;
+}
+.article input[type =button],
+.article input[type =submit] {
+  text-align: left;
+  margin-left: 440px;
+}
+.article textarea {
+  width: 490px;
+  height: 90px;
 }
