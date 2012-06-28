@@ -8,6 +8,7 @@ body {
   margin: left;
   text-stroke: 1px rgba(255,255,255,0.1);
   color: #000;
+  line-height: 2;
 }
 #articles {
   text-align: left;
@@ -104,6 +105,20 @@ ul {
   padding: 25px;
   border-radius: 6px;
 }
+.article .comment .person {
+  margin-right: 600px;
+  margin-left: 20px;
+  padding: 6px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: rgba(243,243,243,0.83);
+  border: solid 2px rgba(238,232,232,0.25);
+  border-radius: 5px;
+}
+.article .comment .comment {
+  margin-left: 40px;
+  padding: 5px;
+}
 .article input[type =text] {
   width: 490px;
   margin-left: 16px;
@@ -116,4 +131,8 @@ ul {
 .article textarea {
   width: 490px;
   height: 90px;
+}
+.about {
+  margin: 20px;
+  padding: 20px;
 }

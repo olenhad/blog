@@ -11,6 +11,9 @@ ArticleProvider = function(host, port) {
 };
 
 
+
+
+
 ArticleProvider.prototype.getCollection= function(callback) {
   var self = this;
   this.db.open(function (error, db){
@@ -81,6 +84,29 @@ ArticleProvider.prototype.save = function(articles, callback) {
       }
     });
 };
+ArticleProvider.prototype.sortByDate = function(callback){
+  this.findAll(function(error,result){
+    if(error) callback(error)
+    else{
+      result.sort(function(a,b){
+        return b.created_at - a.created_at;
+        });
+        callback(null,result);
+      
+    }
+  });
+}
+ArticleProvider.prototype.removeById=function(articleId,callback){
+  this.getCollection(function(error,col){
+    if(error) callback(error)
+    else{
+      col.remove({_id:col.db.bson_serializer.ObjectID.createFromHexString(articleId)},function(err,result){
+        console.log(result);
+        callback(err,result);
+      });
+    }
+  });
+}
 ArticleProvider.prototype.addCommentToArticle = function(articleId,comment,callback){
   this.getCollection(function(error,collection){
     if(error) callback(error)
