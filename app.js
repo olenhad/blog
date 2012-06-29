@@ -91,6 +91,13 @@ app.get('/sudo',function(req,res){
     }
   });
 });
+app.get('/blog/newT',function(req,res){
+  res.render('new_post.jade',{
+    locals:{
+      title:'Test'
+    }
+  });
+});
 app.post('/sudo',function(req,res){
   if(req.param('key')=="admin"){
 
