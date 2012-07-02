@@ -3,7 +3,7 @@ var ArticleProvider = require('./articleProvider').ArticleProvider;
 
 
 var app = module.exports = express.createServer();
-
+var io = require('socket.io').listen(app);
 // Configuration
 
 var sessionStore = new express.session.MemoryStore
@@ -91,13 +91,12 @@ app.get('/sudo',function(req,res){
     }
   });
 });
-app.get('/blog/newT',function(req,res){
-  res.render('new_post.jade',{
-    locals:{
-      title:'Test'
-    }
-  });
+app.get('/blog/newSimple',function(req,res){
+  res.redirect('/tinymce/examples/simple.html')
 });
+app.get('/blog/newFull',function(req,res){
+  res.redirect('/tinymce/examples/full.html')
+})
 app.post('/sudo',function(req,res){
   if(req.param('key')=="admin"){
 
@@ -146,7 +145,39 @@ app.post('/blog/addComment', function(req, res) {
            res.redirect('/blog/' + req.param('_id'))
        });
 });
+app.get('/chat',function(req,res){
+  res.render('chat.jade',{
+    locals:{
+      title: 'Chat!'
+    }
+  });
+});
 
+//sockets
+var nicknames = {};
+
+io.sockets.on('connection',function(socket){
+   socket.on('client message',function(msg){
+    socket.broadcast.emit('client message',socket.nickname,msg);
+   });
+   socket.on('nickname',function(nick, nameCheck){
+    if(nicknames[nick]){
+      nameCheck(true);
+    } else{
+      nameCheck(false);
+      nicknames[nick] = socket.nickname = nick;
+      socket.broadcast.emit("announcement",nick+' joined the room');
+      io.sockets.emit('nicknames',nicknames);
+    }
+   });
+   socket.on('disconnect',function(){
+    if(!socket.nickname) return;
+    delete nicknames[socket.nickname];
+    socket.broadcast.emit('announcement', socket.nickname+ 'disconnected');
+    socket.broadcast.emit('nicknames',nicknames);
+   });
+
+});
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

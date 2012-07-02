@@ -1,5 +1,6 @@
 html {
   background: #d6d6d6;
+  height: 100%;
 }
 body {
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;

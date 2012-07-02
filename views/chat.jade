@@ -1,0 +1,45 @@
+
+script(src='http://code.jquery.com/jquery-1.6.1.min.js')
+script(src='/socket.io/socket.io.js')
+script
+	var socket = io.connect();
+	socket.on('connect',function(){
+		$('#chat').addClass('connected');
+	});
+	socket.on('announcement',function(msg){
+		$('#lines').append($('<p>').append($('<em>').text(msg)));
+	});
+	socket.on('nicknames',function(nicknames){
+		$('#nicknames').empty().append($('<span> Online: </span>'));
+		for var i in nicknames{
+			$('#nicknames').append($('<b>').text(nicknames[i]));
+		}
+	});
+	function message (from,msg){
+		$('#lines').append($('<p>').append($('<b>').text(from),msg));
+
+	}
+	$(function(){
+		$('#set_nickname').submit(function(ev){
+			socket.emit('nickname',$('#nick').val(),function (set){
+				if(!set){
+					
+				}
+				})
+			})
+	});
+
+#chat
+	#nickname
+		form.heh#set_nickname
+			p Hey Welcome to my hobby client. Enter a nickname!
+			input#nick
+			p#nickname-conflict sorry this one's in use
+	#connecting
+		.heh sockets connecting
+	#messages
+		#nicknames
+		#lines
+	form#message
+		input#message-body
+		button Send	
