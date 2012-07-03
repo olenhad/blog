@@ -4,10 +4,18 @@ var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
+
 ArticleProvider = function(host, port) {
-  this.db= new Db('node-mongo-blog', new Server(host, port, {auto_reconnect: true}, {}));
+
+  //this.db= new Db('node-mongo-blog', new Server(host, port, {auto_reconnect: true}, {}));
   //this.db.open(function(){});
   //console.log(this.db);
+  var self = this;
+  require('mongodb').connect(host, function(err, conn){
+    self.db = conn;
+      /* Simple object to insert: ip address and date */
+    
+});
 };
 
 
@@ -16,13 +24,13 @@ ArticleProvider = function(host, port) {
 
 ArticleProvider.prototype.getCollection= function(callback) {
   var self = this;
-  this.db.open(function (error, db){
+  
   self.db.collection('articles', function(error, article_collection) {
     if( error ) callback(error);
     else callback(null, article_collection);
-    self.db.close();
+    
   });
-});
+
 };
 
 ArticleProvider.prototype.findAll = function(callback) {
@@ -106,6 +114,15 @@ ArticleProvider.prototype.removeById=function(articleId,callback){
       });
     }
   });
+}
+ArticleProvider.prototype.removeAll=function(callback){
+  this.getCollection(function(error,collection){
+    if(error) callback(error)
+    else{
+      collection.remove();
+      callback(null);
+    }
+  })
 }
 ArticleProvider.prototype.addCommentToArticle = function(articleId,comment,callback){
   this.getCollection(function(error,collection){

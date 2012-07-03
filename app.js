@@ -30,7 +30,7 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 app.register('.html',require('jade'));
-var articleProvider = new ArticleProvider('localhost', 27017);
+var articleProvider = new ArticleProvider('mongodb://olenhad:admin@ds033897.mongolab.com:33897/heroku_app5598044', 27017);
 // Routes
 
 
@@ -180,5 +180,5 @@ io.sockets.on('connection',function(socket){
 
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
