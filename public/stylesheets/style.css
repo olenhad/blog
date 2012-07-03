@@ -142,4 +142,12 @@ ul {
 }
 #message{
   visibility: hidden;
+
 }
+#messages{
+  display:none;
+  width:300px;
+  height:400px;
+  overflow: scroll;
+}
+

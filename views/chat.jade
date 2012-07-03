@@ -37,6 +37,7 @@ script
 				if(valid){
 					$('#message').css('visibility','visible');
 					$('#nickname').css('display','none');
+					$('#messages').css('display','block');
 				} else {
 					$('#nickname-conflict').css('display','block');
 				}
@@ -63,8 +64,9 @@ script
 			input#nick
 	p#nickname-conflict sorry this one's in use		
 	#connecting sockets connecting
+	#nicknames
 	#messages
-		#nicknames
+		
 		#lines
 	form#message
 		input#message-body
