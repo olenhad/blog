@@ -137,3 +137,9 @@ ul {
   margin: 20px;
   padding: 20px;
 }
+#connecting, #nickname-conflict{
+  display:none;
+}
+#message{
+  visibility: hidden;
+}

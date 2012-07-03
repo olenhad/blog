@@ -162,14 +162,15 @@ io.sockets.on('connection',function(socket){
    });
    socket.on('nickname',function(nick, nameCheck){
     if(nicknames[nick]){
-      nameCheck(true);
-    } else{
       nameCheck(false);
+    } else{
+      nameCheck(true);
       nicknames[nick] = socket.nickname = nick;
       socket.broadcast.emit("announcement",nick+' joined the room');
       io.sockets.emit('nicknames',nicknames);
     }
    });
+   
    socket.on('disconnect',function(){
     if(!socket.nickname) return;
     delete nicknames[socket.nickname];
