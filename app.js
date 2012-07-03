@@ -30,11 +30,11 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 app.register('.html',require('jade'));
-var articleProvider = new ArticleProvider('mongodb://olenhad:admin@ds033897.mongolab.com:33897/heroku_app5598044', 27017);
+
 // Routes
+var articleProvider = new ArticleProvider('mongodb://olenhad:admin@ds033897.mongolab.com:33897/heroku_app5598044', 27017);
 
 
-exports.ArticleProvider = ArticleProvider;
 app.get('/', function(req, res){
   console.log("request for / recieved");
     articleProvider.sortByDate( function(error,docs){
