@@ -1,6 +1,7 @@
 !!!
 html
 	head
+
 		title= title
 		link(rel='stylesheet', href='/stylesheets/style.css')
 
@@ -13,12 +14,20 @@ html
 				li
 					a(href="/") Blog
 				li
-					a(href="/") Projects
+					a(href="/projects") Projects
+				li
+					a(href="/chat") Chat!
 				li
 					a(href="/aboutMe") About Me	
 
 
 					
 		body!= body
-		
-
+		div#disqus_thread
+		script(type="text/javascript")
+			var disqus_shortname = 'olenhadsblog'; 
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();

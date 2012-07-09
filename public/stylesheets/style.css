@@ -147,7 +147,10 @@ ul {
 #messages{
   display:none;
   width:300px;
-  height:400px;
-  overflow: scroll;
+  height:300px;
+  overflow: auto;
+  overflow-x: auto;
+  overflow-y: auto;
+  
 }
 

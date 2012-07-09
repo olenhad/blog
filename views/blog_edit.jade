@@ -1,0 +1,12 @@
+div.editArticle
+	div.article 
+		form(method="post",action="/blog/edit")
+			input(type="hidden", name="_id", value=article._id.toHexString())
+			div
+				span Title :
+				textarea(type="text",name="title",rows=1)= article.title
+			div
+				span Body :	
+				textarea(type="html",name="body",rows=20)= article.body
+			div#editArticleSubmit	
+				input(type="submit",value="Send")

@@ -32,7 +32,7 @@ app.configure('production', function(){
 app.register('.html',require('jade'));
 
 // Routes
-var articleProvider = new ArticleProvider('mongodb://olenhad:admin@ds033897.mongolab.com:33897/heroku_app5598044', 27017);
+var articleProvider = new ArticleProvider('mongodb://olenhad:admin@ds033897.mongolab.com:33897/heroku_app5598044', 27017,false);
 
 
 app.get('/', function(req, res){
@@ -135,7 +135,24 @@ app.get('/blog/:id', function(req, res) {
         });
     });
 });
-
+app.get('/blog/:id/edit',function(req,res){
+  articleProvider.findById(req.params.id,function(error,article){
+    res.render('blog_edit.jade',{
+      locals:{
+        title:'edit',
+        article:article
+      }
+    });
+  });
+});
+app.post('/blog/edit',function(req,res){
+  articleProvider.editById(req.param('_id'),{
+    title:req.param('title'),
+    body:req.param('body')
+  }, function(error,article){
+    res.redirect('/')
+  });
+});
 app.post('/blog/addComment', function(req, res) {
     articleProvider.addCommentToArticle(req.param('_id'), {
         person: req.param('person'),
@@ -152,7 +169,13 @@ app.get('/chat',function(req,res){
     }
   });
 });
-
+app.get('/projects',function(req,res){
+  res.render('projects.jade',{
+    locals:{
+      title:'Projects'
+    }
+  });
+});
 //sockets
 var nicknames = {};
 

@@ -5,17 +5,23 @@ var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
 
-ArticleProvider = function(host, port) {
+ArticleProvider = function(host, port,test) {
+  if(test){
+    this.db= new Db('node-mongo-blog', new Server('localhost', port, {auto_reconnect: true}, {}));
+    this.db.open(function(){});
+    console.log(this.db);
+  }
+  else{
 
-  //this.db= new Db('node-mongo-blog', new Server(host, port, {auto_reconnect: true}, {}));
-  //this.db.open(function(){});
-  //console.log(this.db);
+
   var self = this;
   require('mongodb').connect(host, function(err, conn){
     self.db = conn;
       /* Simple object to insert: ip address and date */
+
     
 });
+}
 };
 
 
@@ -142,5 +148,24 @@ ArticleProvider.prototype.addCommentToArticle = function(articleId,comment,callb
     }
   });
 };
+ArticleProvider.prototype.editById = function(articleId,article,callback){
+  this.getCollection(function(error,collection){
+    if(error) callback(error)
+    else{
+      collection.update(
+      {
+        _id: collection.db.bson_serializer.ObjectID.createFromHexString(articleId)
+      },
+      {
+        $set:{title:article.title,body:article.body,created_at:new Date()}
+      },
+      function(error,article){
+        if(error) callback(error)
+        else callback(null,article)
+      }
+      )
 
+    }
+  })
+}
 exports.ArticleProvider = ArticleProvider;
