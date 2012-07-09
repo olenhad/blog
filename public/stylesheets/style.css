@@ -13,7 +13,7 @@ body {
 }
 #articles {
   text-align: left;
-  width: 480px;
+  width: 600px;
 }
 #articles .article {
   margin: 20px;
@@ -153,4 +153,7 @@ ul {
   overflow-y: auto;
   
 }
-
+.code{
+  background-color:black;
+  color:green;
+}
